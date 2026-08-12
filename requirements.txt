@@ -1,8 +1,10 @@
-numpy
-pandas
-matplotlib
-flask
-yfinance
-scikit-learn
+Flask
+gunicorn
 tensorflow
-h5py
+keras
+pandas
+numpy
+scikit-learn
+matplotlib
+yfinance
+werkzeug
