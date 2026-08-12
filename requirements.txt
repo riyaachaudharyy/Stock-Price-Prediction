@@ -6,5 +6,4 @@ scikit-learn
 matplotlib
 yfinance
 werkzeug
-tensorflow
-keras
+tensorflow-cpu
