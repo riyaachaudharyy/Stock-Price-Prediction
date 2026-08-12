@@ -1,111 +1,152 @@
-# 📈 EquityLens — AI-Powered Fintech Stock Analytics & Multi-Stock Comparison Terminal
+# EquityLens — AI-Powered Fintech Stock Analytics & Multi-Stock Comparison Terminal
 
-**EquityLens** is a next-generation quantitative financial analytics platform engineered to bridge the gap between heavy technical indicators and deep learning forecasts. It provides real-time market telemetry, technical analysis (EMA, RSI, MACD), and high-accuracy 15-day stock price trajectories using pre-trained **LSTM Neural Networks**.
-
----
-
-## 🚀 Key Features
-
-* **Real-Time Stock Analytics:** Fetch up-to-date historical OHLCV data from Yahoo Finance with smart auto-fallback and caching.
-* **Pre-Trained Deep Learning (LSTM) Forecasting:** Predicts the next 15-day price trajectory recursively using a pre-trained Keras model without retraining.
-* **Multi-Stock Comparison Terminal:** Compare 2 to 3 stocks simultaneously with individual performance graphs, normalized growth charts (Base = 100), absolute historical price trends, and side-by-side metric tables (MAE, RMSE, R²).
-* **Technical Indicators Suite:** Real-time calculation of Exponential Moving Averages (EMA 20, 50, 100, 200), RSI oscillators, and MACD trendline crossovers.
-* **Trader Workstation & Watchlist:** User-authenticated session controls, secure password hashing, isolated personal watchlists, and search history persistence.
-* **Executive Admin Portal:** System overview metrics, user management (activate/deactivate status), and search telemetry analytics.
-* **Data Export Suite:** Export historical data, predictions, and combined report analytics directly to CSV or JSON formats.
-* **Smart Auto-Refresh:** Integrated 2-minute background refresh loop for live monitoring of market status.
+**EquityLens** is a next-generation quantitative financial analytics platform engineered to bridge the gap between technical indicators and deep-learning forecasts. It provides real-time market telemetry, technical analysis (EMA, RSI, MACD), model evaluation, interactive financial visualizations, and 15-day stock price trajectories using a pre-trained **LSTM Neural Network**.
 
 ---
 
-## 🛠️ Tech Stack
+## Key Features
 
-* **Backend:** Python, Flask, Gunicorn, SQLite (`equitylens.db`)
-* **Machine Learning & Data:** TensorFlow / Keras, Scikit-Learn, Pandas, NumPy, YFinance
-* **Frontend:** HTML5, Modern CSS3 (Glassmorphism & Cyber-Grid Theme), Plotly.js, Vanilla JavaScript
-* **Deployment:** Render / Gunicorn Production Server
+- **Real-Time Stock Analytics:** Fetches up-to-date historical OHLCV data from Yahoo Finance with smart auto-fallback and caching.
+- **Pre-Trained Deep Learning (LSTM) Forecasting:** Predicts the next 15-day price trajectory recursively using the existing pre-trained Keras model without retraining.
+- **Multi-Stock Comparison Terminal:** Compares 2 to 3 stocks simultaneously using individual performance graphs, normalized growth charts (Base = 100), absolute historical price trends, and side-by-side model evaluation metrics.
+- **Technical Indicators Suite:** Provides EMA 20, 50, 100, and 200, RSI analysis, and MACD trendline crossovers.
+- **Trader Workstation & Watchlist:** Provides authenticated user sessions, secure password hashing, personalized watchlists, and search history persistence.
+- **Analysis History:** Stores and retrieves previous stock analyses associated with authenticated users.
+- **Executive Admin Portal:** Provides system overview metrics, user management, account activation/deactivation, and search analytics.
+- **Data Export Suite:** Supports access to historical data, predictions, and analytical results for further use.
+- **Smart Auto-Refresh:** Supports periodic background refresh for continuously updated market monitoring.
 
 ---
 
-## 📊 System Architecture & Flowchart
+## Tech Stack
 
-The high-level data flow and application workflow of EquityLens:
+- **Backend:** Python, Flask, SQLite
+- **Machine Learning & Data:** TensorFlow / Keras, Scikit-Learn, Pandas, NumPy, YFinance
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript, Plotly.js
+- **Authentication & Security:** Flask Sessions, Werkzeug Password Hashing
+- **Deployment:** Flask-compatible WSGI deployment with Gunicorn
+
+---
+
+## System Architecture & Flowchart
+
+The high-level data flow and application workflow of EquityLens is:
 
 ```text
-       [ User / Client Browser ]
-                  │
-                  ▼
-       [ Flask Web Server (app.py) ]
-                  │
-        ┌─────────┴─────────┐
-        ▼                   ▼
-   [ SQLite DB ]     [ YFinance API ]
-  (Auth/Watchlist)   (Real-Time Data)
-        │                   │
-        └─────────┬─────────┘
-                  ▼
-      [ Quantitative Engine (main.py) ]
-                  │
-        ┌─────────┴─────────┐
-        ▼                   ▼
-[ Technical Analysis ]  [ Pre-Trained LSTM Model ]
-(EMA, RSI, MACD)        (15-Day Trajectory Forecast)
-        │                   │
-        └─────────┬─────────┘
-                  ▼
-         [ JSON API Response ]
-                  │
-                  ▼
-   [ Interactive Plotly Dashboards ]
+                    [ User / Client Browser ]
+                              |
+                              v
+                    [ Flask Web Server ]
+                         (app.py)
+                              |
+                +-------------+-------------+
+                |                           |
+                v                           v
+        [ SQLite Database ]        [ Market Data Provider ]
+        Auth / Watchlist /          Yahoo Finance / YFinance
+        History / Analytics                  |
+                |                           |
+                +-------------+-------------+
+                              |
+                              v
+                  [ Quantitative Engine ]
+                         (main.py)
+                              |
+                +-------------+-------------+
+                |                           |
+                v                           v
+       [ Technical Analysis ]      [ Pre-Trained LSTM Model ]
+        EMA / RSI / MACD             15-Day Forecast
+                |                           |
+                +-------------+-------------+
+                              |
+                              v
+                    [ JSON API Response ]
+                              |
+                              v
+                 [ Interactive Plotly UI ]
+                              |
+                +-------------+-------------+
+                |                           |
+                v                           v
+          [ Stock Analysis ]        [ Multi-Stock Comparison ]
 
+```
 
-##Project File Structure
+---
+
+## Project File Structure
+
+```text
 Stock-Price-Prediction/
 │
-├── app.py                      # Main Flask server, routes, and database configuration
-├── main.py                     # Quantitative analysis engine, YFinance, and LSTM model loader
-├── stock_dl_model_fixed.keras  # Pre-trained Deep Learning LSTM model weights
-├── requirements.txt            # Python dependencies list
-├── Procfile                    # Deployment execution command
-├── equitylens.db               # SQLite database (auto-generated)
+├── app.py
+│   └── Flask application, API routes, authentication,
+│       database operations, watchlists, history and admin APIs
 │
-├── templates/                  # Frontend views
-│   ├── index.html              # Main interface & comparison terminal
-│   ├── style.css               # Cyber-grid futuristic fintech styling
-│   └── script.js               # Client-side engine, Plotly rendering, and auto-refresh loop
+├── main.py
+│   └── Quantitative analysis engine, market data processing,
+│       technical indicators and existing LSTM model integration
 │
-└── static/                     # Generated charts and assets folder
+├── stock_dl_model_fixed.keras
+│   └── Pre-trained LSTM model
+│
+├── requirements.txt
+│   └── Project dependencies
+│
+├── Procfile
+│   └── Production server configuration
+│
+├── equitylens.db
+│   └── SQLite database generated by the application
+│
+├── templates/
+│   ├── index.html
+│   │   └── Main application interface
+│   │
+│   ├── style.css
+│   │   └── Application styling and visual design
+│   │
+│   └── script.js
+│       └── Frontend logic, API communication,
+│           Plotly charts, comparison functionality
+│           and interface interactions
+│
+└── static/
+    └── Generated charts and static assets
 
+```
+
+---
 
 ## Application Highlights
 
 EquityLens brings together traditional quantitative analysis and deep-learning-based forecasting within a single financial analytics environment.
 
-The platform combines:
+## The platform combines:
 
-- Real-time market data
-- Technical indicators
-- Deep-learning prediction
-- Model evaluation
-- Interactive financial charts
-- Multi-stock comparison
-- Personalized watchlists
-- Search history
-- Analysis history
-- User authentication
-- Administrative monitoring
-- Data access and export functionality
+Real-time market data
+Technical indicators
+Deep-learning prediction
+Model evaluation
+Interactive financial charts
+Multi-stock comparison
+Personalized watchlists
+Search history
+Analysis history
+User authentication
+Administrative monitoring
+Data access and export functionality
 
 This integrated architecture allows users to move from individual stock analysis to comparative market evaluation without leaving the platform.
 
 ---
-
 ## Deployment
 
 The application is designed around a Flask-based backend and can be deployed using a production WSGI server such as Gunicorn.
 
-The deployment stack consists of:
+The deployment architecture consists of:
 
-```text
 Frontend
    |
    v
@@ -119,7 +160,9 @@ Flask Application
    |
    +---- Market Data Provider
 
-## Project Objective
+   ---
+   
+##  Project Objective
 
 The primary objective of EquityLens is to create a unified financial analytics terminal that combines conventional technical analysis with machine-learning-based forecasting.
 
@@ -137,4 +180,4 @@ This project is distributed under the MIT License.
 
 ## Author
 
-Developed by **Riya Chaudhary**.
+Developed by Riya Chaudhary.
