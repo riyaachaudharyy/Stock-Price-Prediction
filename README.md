@@ -75,34 +75,37 @@ Stock-Price-Prediction/
 │
 └── static/                     # Generated charts and assets folder
 
-##Application Highlights
+
+## Application Highlights
 
 EquityLens brings together traditional quantitative analysis and deep-learning-based forecasting within a single financial analytics environment.
 
 The platform combines:
 
-Real-time market data
-Technical indicators
-Deep-learning prediction
-Model evaluation
-Interactive financial charts
-Multi-stock comparison
-Personalized watchlists
-Search history
-Analysis history
-User authentication
-Administrative monitoring
-Data access and export functionality
+- Real-time market data
+- Technical indicators
+- Deep-learning prediction
+- Model evaluation
+- Interactive financial charts
+- Multi-stock comparison
+- Personalized watchlists
+- Search history
+- Analysis history
+- User authentication
+- Administrative monitoring
+- Data access and export functionality
 
 This integrated architecture allows users to move from individual stock analysis to comparative market evaluation without leaving the platform.
 
+---
 
-##Deployment
+## Deployment
 
 The application is designed around a Flask-based backend and can be deployed using a production WSGI server such as Gunicorn.
 
 The deployment stack consists of:
 
+```text
 Frontend
    |
    v
@@ -116,8 +119,7 @@ Flask Application
    |
    +---- Market Data Provider
 
-
-##Project Objective
+## Project Objective
 
 The primary objective of EquityLens is to create a unified financial analytics terminal that combines conventional technical analysis with machine-learning-based forecasting.
 
@@ -125,11 +127,14 @@ Rather than presenting isolated indicators or predictions, the platform integrat
 
 EquityLens is therefore designed as a practical fintech analytics platform for exploring stock behavior, evaluating model predictions, and comparing investment candidates through data-driven visual analysis.
 
+---
 
-##License
+## License
 
 This project is distributed under the MIT License.
 
-##Author
+---
 
-Developed by Riya Chaudhary.
+## Author
+
+Developed by **Riya Chaudhary**.
