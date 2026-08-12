@@ -1,4 +1,4 @@
-# EquityLens — AI-Powered Fintech Stock Analytics & Multi-Stock Comparison Terminal
+# EquityLens 
 
 **EquityLens** is a next-generation quantitative financial analytics platform engineered to bridge the gap between technical indicators and deep-learning forecasts. It provides real-time market telemetry, technical analysis (EMA, RSI, MACD), model evaluation, interactive financial visualizations, and 15-day stock price trajectories using a pre-trained **LSTM Neural Network**.
 
@@ -147,18 +147,24 @@ The application is designed around a Flask-based backend and can be deployed usi
 
 The deployment architecture consists of:
 
+```text
 Frontend
    |
    v
 Flask Application
    |
-   +---- SQLite Database
+   v
+SQLite Database
    |
-   +---- Quantitative Analysis Engine
+   v
+Quantitative Analysis Engine
    |
-   +---- Pre-Trained LSTM Model
+   v
+Pre-Trained LSTM Model
    |
-   +---- Market Data Provider
+   v
+Market Data Provider
+```
 
    ---
    
