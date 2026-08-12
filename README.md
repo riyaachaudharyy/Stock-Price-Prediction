@@ -1,4 +1,5 @@
 # EquityLens 
+**🌐 Live Application:** [https://stock-price-predictionn.onrender.com](https://stock-price-predictionn.onrender.com)
 
 **EquityLens** is a next-generation quantitative financial analytics platform engineered to bridge the gap between technical indicators and deep-learning forecasts. It provides real-time market telemetry, technical analysis (EMA, RSI, MACD), model evaluation, interactive financial visualizations, and 15-day stock price trajectories using a pre-trained **LSTM Neural Network**.
 
